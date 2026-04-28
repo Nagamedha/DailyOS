@@ -1,0 +1,140 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Header.css — Styles for the sticky top header
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.header {
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary-medium));
+  position: sticky;
+  top: 0;
+  z-index: 100; /* sits above all page content */
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.15);
+}
+
+.header-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* ── App title ── */
+.app-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: #fff;
+  line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.app-title em {
+  font-style: italic;
+  color: var(--color-primary-light);
+}
+
+/* ── Date navigation ── */
+.date-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.date-nav-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.date-nav-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.28);
+}
+.date-nav-btn:disabled {
+  cursor: not-allowed;
+}
+
+.date-center {
+  text-align: center;
+  min-width: 110px;
+}
+
+.d-date {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.d-date--picker {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.d-date--picker:hover {
+  opacity: 0.85;
+}
+
+.d-cal-icon {
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.date-input-hidden {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  border: 0;
+  padding: 0;
+}
+
+.today-btn {
+  font-size: 9px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 3px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 4px;
+  display: inline-block;
+  transition: background 0.2s;
+  font-family: var(--font-body);
+}
+.today-btn:hover {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+/* ── Mobile ── */
+@media (max-width: 420px) {
+  .header-inner {
+    padding: 12px 14px;
+  }
+  .app-title {
+    font-size: 18px;
+  }
+  .d-date {
+    font-size: 14px;
+  }
+  .date-center {
+    min-width: 90px;
+  }
+}

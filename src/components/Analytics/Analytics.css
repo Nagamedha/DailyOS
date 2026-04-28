@@ -1,0 +1,368 @@
+.an-wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px 16px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Period selector ── */
+.an-period {
+  display: flex;
+  gap: 8px;
+}
+
+.an-period-btn {
+  flex: 1;
+  padding: 9px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.15s;
+}
+.an-period-btn.active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-bg);
+  color: var(--color-primary);
+}
+
+/* ── Stat cards grid ── */
+.an-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.an-stat-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.an-stat-icon { font-size: 22px; margin-bottom: 8px; }
+
+.an-stat-value {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+.an-stat-label {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+.an-stat-card.highlight {
+  background: var(--color-primary-bg);
+  border-color: var(--color-primary-light);
+}
+.an-stat-card.highlight .an-stat-value { color: var(--color-primary); }
+
+/* ── Section card ── */
+.an-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.an-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 14px;
+}
+
+/* ── Consistency heatmap ── */
+.an-heatmap {
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.an-heat-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.an-heat-label {
+  font-size: 9px;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.an-heat-day {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  position: relative;
+  cursor: default;
+}
+
+.an-heat-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+}
+
+/* ── Mood trend ── */
+.an-mood-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 60px;
+}
+
+.an-mood-bar-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.an-mood-bar {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.4s ease;
+}
+
+.an-mood-bar-label {
+  font-size: 9px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.an-mood-bar-emoji {
+  font-size: 11px;
+}
+
+/* ── Insights ── */
+.an-insight {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  background: var(--color-border-light);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+}
+.an-insight:last-child { margin-bottom: 0; }
+
+.an-insight-icon { font-size: 18px; flex-shrink: 0; }
+
+.an-insight-text {
+  font-size: 12px;
+  color: var(--color-text);
+  line-height: 1.55;
+}
+
+.an-insight-text strong { color: var(--color-primary); }
+
+/* ── Finance breakdown ── */
+.an-finance-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.an-finance-row:last-child { margin-bottom: 0; }
+
+.an-finance-cat {
+  width: 90px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.an-finance-track {
+  flex: 1;
+  background: var(--color-border-light);
+  border-radius: var(--radius-full);
+  height: 10px;
+  overflow: hidden;
+}
+
+.an-finance-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+}
+
+.an-finance-amount {
+  width: 70px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ── Empty state ── */
+.an-empty {
+  text-align: center;
+  padding: 24px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ── Date range picker ── */
+.an-date-range {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.an-custom-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.an-date-input-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.an-date-input {
+  flex: 1;
+  min-width: 120px;
+  padding: 7px 10px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-card);
+  color: var(--color-text);
+  font-size: 12px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.an-date-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* ── Activity streaks ── */
+.an-streaks {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.an-streak-badge {
+  flex: 1;
+  min-width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 12px 8px;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  background: var(--color-border-light, #f1f5f9);
+  text-align: center;
+}
+
+.an-streak-green {
+  border-color: #22c55e;
+  background: #f0fdf4;
+}
+.an-streak-amber {
+  border-color: #f59e0b;
+  background: #fffbeb;
+}
+.an-streak-grey {
+  border-color: var(--color-border);
+  background: var(--color-card);
+}
+
+.an-streak-icon { font-size: 20px; }
+
+.an-streak-value {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-text);
+}
+
+.an-streak-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.an-streak-unit {
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.an-streak-green .an-streak-value { color: #16a34a; }
+.an-streak-amber .an-streak-value { color: #d97706; }
+
+/* ── Daily hours bar chart ── */
+.an-hours-chart {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.an-hours-chart-svg {
+  display: block;
+}
+
+.an-hours-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-top: 10px;
+}
+
+.an-hours-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-transform: capitalize;
+}
+
+.an-hours-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 420px) {
+  .an-wrap { padding: 12px 12px 100px; }
+  .an-stat-value { font-size: 22px; }
+  .an-streak-badge { min-width: 70px; padding: 10px 6px; }
+  .an-streak-value { font-size: 18px; }
+}

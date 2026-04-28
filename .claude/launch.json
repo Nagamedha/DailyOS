@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "DailyOS (Vite)",
+      "runtimeExecutable": "/Users/sonysakhamuri/.nvm/versions/node/v20.20.0/bin/node",
+      "runtimeArgs": ["/Users/sonysakhamuri/Desktop/GetJOb/DailyOS/node_modules/.bin/vite"],
+      "port": 5173
+    }
+  ]
+}

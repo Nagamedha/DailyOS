@@ -1,0 +1,267 @@
+export const BREAKFASTS = [
+  {
+    code: 'BF1', name: 'Overnight Smoothie Bowl',
+    cal: 380, carbs: 45, protein: 14, fats: 18, fibre: 8, iron: '~4mg',
+    tag: 'Best for blood sugar',
+    ingredients: 'Oats 40g · Chia seeds 2.5tsp · Makhana 10pc · Almonds 5 · Walnuts 5 · Cashews 3 · Dates 1 · Strawberries 6 · Blueberries 10 · Pomegranate 3tbsp · Milk ¾ cup · Honey 1tsp',
+    tip: 'Eat with berries for max iron absorption (Vit C triples it)',
+  },
+  {
+    code: 'BF2', name: 'Boiled Sweet Potato + Nuts + Fruit',
+    cal: 320, carbs: 42, protein: 8, fats: 14, fibre: 6, iron: '~2mg',
+    tag: 'Good pre-gym',
+    ingredients: 'Sweet potato 1 medium · Walnuts 4 + Almonds 6 · Orange or guava 1 whole · Pinch rock salt + jeera',
+    tip: 'Orange/guava is MUST — Vit C doubles sweet potato iron',
+  },
+  {
+    code: 'BF3', name: 'Banana Walnut Cashew Shake',
+    cal: 300, carbs: 38, protein: 10, fats: 12, fibre: 3, iron: '~1.5mg',
+    tag: 'Lightest — best pre-gym',
+    ingredients: 'Banana 1 medium · Walnuts 4 + Cashews 3 (blended) · Milk 200ml · Ragi flour 1tsp · Guava or orange (side)',
+    tip: 'Replace Boost with Ragi flour — same colour, more iron, no added sugar',
+  },
+  {
+    code: 'BF4', name: 'Fruits + Nuts Plate',
+    cal: 250, carbs: 35, protein: 6, fats: 10, fibre: 4, iron: '~1mg',
+    tag: 'Rushed mornings',
+    ingredients: 'Any 2 fruits (orange/banana/guava/grapes) · Cashews 4 + Walnuts 4 + Dates 2',
+    tip: 'Better than skipping breakfast — guava has highest Vit C',
+  },
+]
+
+export const LUNCHES = [
+  {
+    code: 'L1', name: 'Spinach Dal + 2 Eggs',
+    cal: 550, carbs: 60, protein: 28, fats: 12, fibre: 10, iron: '~8mg',
+    tag: 'Best veg iron meal', vegNonveg: 'Veg',
+    components: 'Fry veg first · Masoor dal + spinach + lemon squeeze · 2 boiled eggs · Rice + quinoa · Curd rice LAST',
+    tip: 'Squeeze lemon on dal AFTER cooking — non-negotiable for iron',
+  },
+  {
+    code: 'L2', name: 'Tomato Dal + Eggs + Fry Veg',
+    cal: 540, carbs: 58, protein: 26, fats: 12, fibre: 9, iron: '~7mg',
+    tag: 'Easy batch cook', vegNonveg: 'Veg',
+    components: 'Fry veg first · Masoor/toor dal with tomatoes + 2 boiled eggs · Rice + quinoa · Curd rice LAST',
+    tip: 'Tomato inside dal = Vit C built in, no extra lemon needed',
+  },
+  {
+    code: 'L3', name: 'Sambar + Drumstick + Eggs',
+    cal: 520, carbs: 55, protein: 25, fats: 11, fibre: 11, iron: '~7.5mg',
+    tag: 'Best South Indian iron', vegNonveg: 'Veg',
+    components: 'Drumstick sambar 1.5 cups + brinjal/potato · 2 boiled eggs · Rice + quinoa · Curd rice LAST',
+    tip: 'Drumstick = #1 iron vegetable — add to every sambar batch',
+  },
+  {
+    code: 'L4', name: 'Palak Paneer + Fry Veg',
+    cal: 560, carbs: 55, protein: 26, fats: 18, fibre: 9, iron: '~6mg',
+    tag: 'Good Vit D day', vegNonveg: 'Veg',
+    components: 'Fry veg first · Palak paneer + lemon squeeze · Rice + quinoa · Curd rice LAST',
+    tip: 'Squeeze lemon on palak paneer after cooking — triples iron',
+  },
+  {
+    code: 'L5', name: 'Paneer Tomato Cashew Curry',
+    cal: 560, carbs: 52, protein: 24, fats: 20, fibre: 8, iron: '~5mg',
+    tag: 'Veg day', vegNonveg: 'Veg',
+    components: 'Fry veg first · Paneer tomato cashew curry + wilted spinach · Rice + quinoa · Curd rice LAST',
+    tip: 'Add spinach to this curry — easy iron boost',
+  },
+  {
+    code: 'L6', name: 'Chicken Curry + Fry Veg',
+    cal: 580, carbs: 56, protein: 32, fats: 14, fibre: 8, iron: '~7mg',
+    tag: 'Non-veg', vegNonveg: 'Non-veg',
+    components: 'Fry veg first (capsicum for Vit C) · Chicken curry · Rice + quinoa · Curd rice LAST',
+    tip: 'Capsicum fry alongside = Vit C for chicken iron absorption',
+  },
+  {
+    code: 'L7', name: 'Prawn / Fish Curry + Fry Veg',
+    cal: 560, carbs: 54, protein: 30, fats: 12, fibre: 8, iron: '~6.5mg',
+    tag: 'Non-veg', vegNonveg: 'Non-veg',
+    components: 'Fry veg first · Prawn or fish curry + lemon squeeze · Rice + quinoa · Curd rice LAST',
+    tip: 'Heme iron from seafood absorbs 3x better than plant iron',
+  },
+  {
+    code: 'L8', name: 'Salmon Bowl + Avocado',
+    cal: 620, carbs: 48, protein: 36, fats: 22, fibre: 9, iron: '~6mg',
+    tag: '⭐ Best Vit D day', vegNonveg: 'Non-veg',
+    components: 'Salmon fillet · Avocado mash · Broccoli · Rice + quinoa · Take Vit D tablet with this meal',
+    tip: 'Salmon + avocado fat = MAXIMUM Vit D absorption. Best day for Vit D tablet.',
+  },
+  {
+    code: 'L9', name: 'Grain Bowls (Veg)',
+    cal: 540, carbs: 58, protein: 22, fats: 14, fibre: 10, iron: '~5mg',
+    tag: 'Veg day', vegNonveg: 'Veg',
+    components: 'Rice + quinoa base · Roasted veg (broccoli, capsicum, carrot) · 2 eggs or dal · Tahini or peanut sauce · Curd LAST',
+    tip: 'Great for batch prep — roast veg once, use across days',
+  },
+  {
+    code: 'L10', name: 'Upma + Sambar + 2 Eggs',
+    cal: 430, carbs: 50, protein: 20, fats: 10, fibre: 7, iron: '~5mg',
+    tag: 'Light veg day', vegNonveg: 'Veg',
+    components: 'Semolina upma with carrot/onion/peas · Sambar · 2 boiled eggs · Curd LAST',
+    tip: 'Add drumstick to sambar for extra iron — easy combo',
+  },
+]
+
+export const DINNERS = [
+  {
+    code: 'D1', name: 'Ragi Idli / Godum Dosa + Sambar + 2 Eggs',
+    cal: 400, carbs: 52, protein: 24, fats: 14, fibre: 6, iron: '~5mg',
+    tag: 'Best post-gym', vegNonveg: 'Veg',
+    components: '3-4 ragi idlis or 2 dosas · Sambar 1 cup · Coconut/peanut chutney · 2 eggs · Curd rice LAST',
+    tip: 'Ragi = calcium + iron. Batch batter — reheat in 5 min.',
+  },
+  {
+    code: 'D2', name: 'Chapati + Dal/Curry + Fry Veg',
+    cal: 450, carbs: 58, protein: 22, fats: 12, fibre: 8, iron: '~5mg',
+    tag: 'Any day', vegNonveg: 'Any',
+    components: '2 godum chapatis (add 1tsp flaxseed to atta) · Any dal or leftover curry · Fry veg · Curd rice LAST',
+    tip: 'Add 1tsp flaxseed to atta — invisible in taste, big omega-3 fertility benefit',
+  },
+  {
+    code: 'D3', name: 'Chicken/Prawn Biryani or Pulao',
+    cal: 520, carbs: 65, protein: 30, fats: 12, fibre: 4, iron: '~7mg',
+    tag: 'Non-veg — perfect post-gym', vegNonveg: 'Non-veg',
+    components: 'Biryani 1.5 cups · Lemon squeeze on biryani · Raita AFTER (= your curd portion)',
+    tip: 'Lemon on biryani is KEY for iron from chicken/prawns — non-negotiable',
+  },
+  {
+    code: 'D4', name: 'Mushroom Curry + Chapati + 2 Eggs',
+    cal: 450, carbs: 52, protein: 26, fats: 14, fibre: 6, iron: '~5mg',
+    tag: 'Natural Vit D', vegNonveg: 'Veg',
+    components: 'Mushroom curry in oil/ghee · 2 chapatis or ½ cup rice+quinoa · 2 eggs · Curd rice LAST',
+    tip: 'Cook mushrooms in oil — Vit D is fat-soluble, wasted without fat',
+  },
+  {
+    code: 'D5', name: 'Brinjal Tomato + Rice + 3 Eggs',
+    cal: 460, carbs: 52, protein: 26, fats: 14, fibre: 7, iron: '~5.5mg',
+    tag: 'Veg day', vegNonveg: 'Veg',
+    components: 'Brinjal tomato curry · Rice+quinoa or 2 chapatis · 3 eggs (brinjal = low protein) · Curd rice LAST',
+    tip: '3 eggs here compensates for low protein in brinjal',
+  },
+  {
+    code: 'D6', name: 'Potato Tomato Curry + Chapati + 2 Eggs',
+    cal: 440, carbs: 54, protein: 22, fats: 12, fibre: 7, iron: '~4.5mg',
+    tag: 'Veg day', vegNonveg: 'Veg',
+    components: 'Potato tomato curry · 2 chapatis · 2 eggs · Curd rice LAST',
+    tip: 'Tomato Vit C helps egg iron — good combination',
+  },
+  {
+    code: 'D7', name: 'Cauliflower Tomato Curry + Chapati + 2 Eggs',
+    cal: 430, carbs: 50, protein: 22, fats: 12, fibre: 8, iron: '~4.5mg',
+    tag: 'Veg day', vegNonveg: 'Veg',
+    components: 'Cauliflower tomato curry · 2 chapatis or rice+quinoa · 2 eggs · Curd rice LAST',
+    tip: 'Cauliflower has Vit C — plus tomato base doubles the iron effect',
+  },
+  {
+    code: 'D8', name: 'Salmon + Avocado + Veg (Dinner)',
+    cal: 500, carbs: 42, protein: 38, fats: 20, fibre: 8, iron: '~6mg',
+    tag: '⭐ Best Vit D + fertility', vegNonveg: 'Non-veg',
+    components: 'Salmon · Avocado · Broccoli or veg · Rice+quinoa or chapati · Curd LAST',
+    tip: 'Take Vit D tablet with this dinner — maximum absorption with salmon+avocado fat',
+  },
+]
+
+export const SUPPLEMENTS = [
+  {
+    id: 'vitD',
+    name: 'Vitamin D3 50,000 IU',
+    icon: '☀️',
+    frequency: 'Once per week',
+    timing: 'With fattiest lunch — best with L8 Salmon',
+    withFood: 'Fat-containing meal (salmon, chicken curry, palak paneer)',
+    rules: 'NEVER on empty stomach. Fat-soluble — without fat, up to 50% wasted.',
+    color: '#f59e0b',
+  },
+  {
+    id: 'folicDha',
+    name: 'Folic Acid + DHA Prenatal',
+    icon: '🌸',
+    frequency: 'Every single night',
+    timing: 'Immediately after finishing dinner',
+    withFood: 'After any D1–D8 dinner',
+    rules: 'Most important daily supplement. Same time every night = habit = never missed.',
+    color: '#ec4899',
+  },
+  {
+    id: 'iron',
+    name: 'Iron (Ferrous Bisglycinate)',
+    icon: '🩸',
+    frequency: 'When prescribed — ask Dr Arumilli',
+    timing: '~3:30–4:00 PM · 1–2 hrs after lunch',
+    withFood: 'ONLY with fresh orange juice. No milk, chai, coffee.',
+    avoid: '⛔ No curd/dairy 1 hr before or after · No chai/coffee · 5+ hr gap from prenatal',
+    rules: 'ASK DOCTOR URGENTLY before starting. 5+ hr gap from prenatal vitals.',
+    color: '#ef4444',
+  },
+  {
+    id: 'b12',
+    name: 'B12 (test first)',
+    icon: '🔵',
+    frequency: 'As prescribed after testing',
+    timing: 'Morning with breakfast',
+    withFood: 'Any breakfast BF1–BF4',
+    rules: 'Ask Dr Arumilli to test B12 levels first. Low B12 + folic acid = neural tube risk.',
+    color: '#3b82f6',
+  },
+  {
+    id: 'haldiDoodh',
+    name: 'Haldi Doodh',
+    icon: '🥛',
+    frequency: 'Every night before sleep',
+    timing: '1.5–2 hours after dinner (~11:00–11:30 PM)',
+    withFood: '½ cup warm milk + ¼ tsp turmeric + pinch black pepper + cardamom',
+    rules: 'Calcium absorbs best at night. Turmeric reduces liver inflammation (ALT 58). 4–6 weeks = measurable improvement.',
+    color: '#f59e0b',
+  },
+]
+
+export const DAILY_SCHEDULE = [
+  { time: '10:00–10:30 AM', label: 'Breakfast', key: 'breakfast' },
+  { time: '10:40–10:50 AM', label: 'Walk #1 after breakfast', key: null },
+  { time: '1:30–2:30 PM',   label: 'Lunch', key: 'lunch' },
+  { time: '2:40–2:50 PM',   label: 'Walk #2 after lunch (midday sun)', key: null },
+  { time: '3:30–4:00 PM',   label: 'Iron tablet (1hr after lunch)', key: null },
+  { time: '7:15 PM',        label: 'Pre-gym snack (gym days only)', key: 'snack' },
+  { time: '9:00–9:30 PM',   label: 'Dinner', key: 'dinner' },
+  { time: '9:40–9:50 PM',   label: 'Walk #3 after dinner', key: null },
+  { time: '11:00–11:30 PM', label: 'Haldi Doodh', key: null },
+]
+
+export const EATING_ORDER_NOTE = 'Eating order: Vegetables FIRST → Dal/Protein SECOND → Curd Rice LAST'
+
+export const FINANCE_CATEGORIES = [
+  { id: 'groceries',     label: 'Groceries',     icon: '🛒', color: '#22c55e' },
+  { id: 'rent',          label: 'Rent',           icon: '🏠', color: '#6366f1' },
+  { id: 'utilities',     label: 'Utilities',      icon: '⚡', color: '#f59e0b' },
+  { id: 'health',        label: 'Health',         icon: '💊', color: '#ef4444' },
+  { id: 'transport',     label: 'Transport',      icon: '🚌', color: '#3b82f6' },
+  { id: 'restaurant',    label: 'Restaurant',     icon: '🍽️', color: '#f97316' },
+  { id: 'entertainment', label: 'Entertainment',  icon: '🎬', color: '#8b5cf6' },
+  { id: 'subscriptions', label: 'Subscriptions',  icon: '📱', color: '#06b6d4' },
+  { id: 'shopping',      label: 'Shopping',       icon: '🛍️', color: '#ec4899' },
+  { id: 'india',         label: 'India/Parcel',   icon: '✈️', color: '#10b981' },
+  { id: 'other',         label: 'Other',          icon: '📝', color: '#94a3b8' },
+]
+
+export const MOODS = [
+  { value: 1, emoji: '😔', label: 'Rough' },
+  { value: 2, emoji: '😕', label: 'Low' },
+  { value: 3, emoji: '😐', label: 'Okay' },
+  { value: 4, emoji: '🙂', label: 'Good' },
+  { value: 5, emoji: '😊', label: 'Great' },
+]
+
+export const AFFIRMATIONS = [
+  "Every healthy choice today is building the life you want.",
+  "Progress, not perfection. One meal, one walk, one step at a time.",
+  "You are doing something beautiful for your future.",
+  "Your body is working hard for you. Nourish it with love.",
+  "Small consistent actions create extraordinary results.",
+  "Today's healthy choices are tomorrow's strength.",
+  "You are stronger than you think, and more capable than you know.",
+  "Be patient with yourself. Growth takes time.",
+  "Every walk, every meal, every rest — it all counts.",
+  "You deserve to feel your best. Keep going.",
+  "This is not a perfect journey, it's a real one. And you're showing up.",
+  "Your future self is cheering you on from the other side.",
+]

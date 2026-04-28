@@ -1,0 +1,1151 @@
+/* ── Exercise tab — matches original exercise_tracker.html design ─────────── */
+
+.exercise {
+  padding-bottom: 160px;
+}
+
+/* ── Day type selector ────────────────────────────────────────────────────── */
+.ec-day-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.ec-day-tab {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: 14px;
+  padding: 12px 6px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+}
+
+.ec-day-tab[data-day="A"].active { border-color: #3d6b47; background: #e8f0e9; }
+.ec-day-tab[data-day="A"].active .ec-dt-letter { color: #3d6b47; }
+.ec-day-tab[data-day="B"].active { border-color: #5a4e88; background: #f0edf8; }
+.ec-day-tab[data-day="B"].active .ec-dt-letter { color: #5a4e88; }
+.ec-day-tab[data-day="C"].active { border-color: #8a6a30; background: #fdf6ec; }
+.ec-day-tab[data-day="C"].active .ec-dt-letter { color: #8a6a30; }
+.ec-day-tab[data-day="D"].active { border-color: #c05a30; background: #fef3ef; }
+.ec-day-tab[data-day="D"].active .ec-dt-letter { color: #c05a30; }
+
+.ec-dt-letter {
+  font-size: 10px;
+  letter-spacing: .1em;
+  font-weight: 700;
+  color: #aaa;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.ec-dt-name {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+.ec-dt-dur {
+  font-size: 9px;
+  color: var(--color-text-muted);
+  margin-top: 3px;
+}
+
+/* ── Week strip ────────────────────────────────────────────────────────────── */
+.ec-week-strip {
+  background: var(--color-surface);
+  border-bottom: .5px solid var(--color-border);
+  margin: 0 -16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-bottom: 0;
+}
+.ec-week-strip::-webkit-scrollbar { display: none; }
+.ec-week-inner {
+  display: flex;
+  padding: 10px 16px;
+  gap: 4px;
+  justify-content: space-between;
+}
+.ec-week-day {
+  flex: 1;
+  min-width: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 2px;
+  border-radius: 8px;
+}
+.ec-wd-label {
+  font-size: 9px;
+  color: var(--color-text-muted);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.ec-week-day.today .ec-wd-label { color: #3d6b47; font-weight: 700; }
+.ec-wd-num {
+  font-size: 12px;
+  color: var(--color-text);
+  font-weight: 500;
+}
+.ec-wd-num.today {
+  background: #3d6b47;
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+.ec-wd-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-border);
+  transition: background .2s;
+}
+.ec-wd-dot.done    { background: #3d6b47; }
+.ec-wd-dot.partial { background: #a8d4ac; }
+
+/* ── Progress bar ──────────────────────────────────────────────────────────── */
+.ec-progress-bar-wrap {
+  margin: 12px 0 4px;
+}
+.ec-progress-bar-bg {
+  background: var(--color-border);
+  border-radius: 4px;
+  height: 5px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+.ec-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #a8d4ac, #4ade80);
+  border-radius: 4px;
+  transition: width .5s ease;
+  min-width: 0;
+}
+.ec-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--color-text-muted);
+  letter-spacing: .04em;
+}
+
+/* ── Session pill ──────────────────────────────────────────────────────────── */
+.ec-session-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: 20px;
+  padding: 6px 14px 6px 10px;
+  cursor: pointer;
+  transition: all .2s;
+  margin-bottom: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+.ec-session-pill.running {
+  border-color: rgba(61,107,71,.5);
+  background: #f0faf1;
+}
+.ec-session-pill:hover { opacity: .85; }
+.ec-sp-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-border);
+  flex-shrink: 0;
+  transition: background .2s;
+}
+.ec-sp-dot.running {
+  background: #4ade80;
+  animation: blink 1s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+.ec-sp-label {
+  font-size: 9px;
+  color: var(--color-text-muted);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.ec-sp-time {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .02em;
+  line-height: 1;
+  min-width: 42px;
+}
+
+/* ── Main content area ─────────────────────────────────────────────────────── */
+.ec-main-content { }
+
+/* ── Phase group ───────────────────────────────────────────────────────────── */
+.ec-phase-group { margin-bottom: 16px; }
+
+.ec-phase-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+.ec-phase-pill--warmup  { background: #fdf6ec; color: #8a6a30; }
+.ec-phase-pill--main    { background: #e8f0e9; color: #3d6b47; }
+.ec-phase-pill--cooldown{ background: #f0edf8; color: #5a4e88; }
+.ec-phase-pill--home    { background: #fef3ef; color: #c05a30; }
+
+/* ── Exercise card ─────────────────────────────────────────────────────────── */
+.ec-card {
+  background: var(--color-surface);
+  border: .5px solid var(--color-border);
+  border-radius: 14px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color .2s, box-shadow .2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+.ec-card.done    { border-color: #b8d4ba; background: #f8fbf8; }
+.ec-card.expanded { box-shadow: 0 3px 12px rgba(0,0,0,.1); }
+
+.ec-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 10px 8px;
+}
+
+.ec-check {
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .2s;
+  background: var(--color-surface);
+  flex-shrink: 0;
+}
+.ec-check.done {
+  border-color: #3d6b47;
+  background: #3d6b47;
+}
+.ec-check svg { display: block; width: 13px; height: 13px; }
+
+.ec-body {
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+}
+.ec-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+.ec-name.done {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+.ec-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin-top: 3px;
+}
+.ec-tag {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 6px;
+  white-space: nowrap;
+  letter-spacing: .04em;
+}
+.ec-tag--A      { background: #e8f0e9; color: #2d5a35; }
+.ec-tag--B      { background: #f0edf8; color: #5a4e88; }
+.ec-tag--C      { background: #fdf6ec; color: #8a6a30; }
+.ec-tag--D      { background: #fef3ef; color: #c05a30; }
+.ec-tag--weight { background: #fff0e8; color: #c05a30; }
+.ec-tag--rest   { background: #f5f5f5; color: #888; }
+
+/* Per-exercise timer */
+.ec-timer-cell {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.ec-timer-time {
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+  min-width: 36px;
+  text-align: right;
+}
+.ec-timer-time.has-time { color: #3d6b47; }
+.ec-timer-btn {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 11px;
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.ec-timer-btn.play  { background: #e8f0e9; color: #3d6b47; }
+.ec-timer-btn.pause { background: #fdf6ec; color: #8a6a30; }
+
+.ec-expand-btn {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all .2s;
+  flex-shrink: 0;
+}
+.ec-chevron { display: inline-block; transition: transform .25s; }
+.ec-chevron.open { transform: rotate(180deg); }
+
+/* ── Expanded detail ───────────────────────────────────────────────────────── */
+.ec-detail {
+  border-top: .5px solid var(--color-border);
+  padding: 12px 12px 14px 44px;
+  background: var(--color-bg);
+}
+
+.ec-detail-section { margin-bottom: 10px; }
+
+.ec-detail-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.ec-detail-label::before {
+  content: '';
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.ec-posture-box {
+  background: #f4faf5;
+  border-left: 3px solid #3d6b47;
+  border-radius: 0 8px 8px 0;
+  padding: 8px 10px;
+  font-size: 11.5px;
+  color: #374937;
+  line-height: 1.65;
+}
+
+.ec-notes-text {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Demo area */
+.ec-demo-area {
+  background: var(--color-bg);
+  border-radius: 10px;
+  padding: 8px 10px;
+  border: .5px solid var(--color-border);
+}
+.ec-demo-url-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.ec-demo-url-input {
+  flex: 1;
+  font-size: 11px;
+  border: .5px solid var(--color-border);
+  border-radius: 8px;
+  padding: 7px 10px;
+  outline: none;
+  font-family: inherit;
+  color: var(--color-text);
+  background: var(--color-surface);
+  min-width: 0;
+}
+.ec-demo-url-input:focus {
+  border-color: #3d6b47;
+  box-shadow: 0 0 0 2px rgba(61,107,71,.12);
+}
+.ec-demo-url-input::placeholder { color: var(--color-text-muted); }
+.ec-demo-open-btn {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: #3d6b47;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .2s;
+  flex-shrink: 0;
+}
+.ec-demo-open-btn:hover { background: #2d5a37; }
+.ec-demo-open-btn:disabled { background: #ccc; cursor: default; }
+
+/* Edit toggle */
+.ec-edit-toggle-row { margin: 8px 0 4px; }
+.ec-edit-toggle {
+  font-size: 11px;
+  font-weight: 600;
+  color: #5a4e88;
+  background: #f0edf8;
+  border: .5px solid #c8c0e8;
+  border-radius: 8px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.ec-edit-toggle:hover { background: #e8e2f5; }
+
+/* Edit fields */
+.ec-edit-fields { margin: 6px 0 8px; }
+.ec-edit-input {
+  width: 100%;
+  border: .5px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--color-text);
+  background: var(--color-surface);
+  outline: none;
+  margin-bottom: 6px;
+  box-sizing: border-box;
+}
+.ec-edit-input:focus { border-color: #3d6b47; }
+.ec-edit-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 6px;
+}
+.ec-edit-input--small { width: 70px; }
+
+/* Rest trigger row */
+.ec-rest-trigger-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 8px 0;
+  flex-wrap: wrap;
+}
+.ec-rest-trigger {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: .5px solid #c8d8c8;
+  background: #f8fbf8;
+  color: #3d6b47;
+  cursor: pointer;
+  transition: all .2s;
+}
+.ec-rest-trigger:hover { background: #e8f0e9; border-color: #3d6b47; }
+.ec-timer-reset {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+}
+
+/* Personal note */
+.ec-personal-note {
+  width: 100%;
+  border: .5px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-family: inherit;
+  color: var(--color-text);
+  background: var(--color-surface);
+  resize: none;
+  outline: none;
+  box-sizing: border-box;
+  margin-top: 4px;
+}
+.ec-personal-note:focus { border-color: #3d6b47; }
+
+.ec-delete-btn {
+  font-size: 11px;
+  color: #e07070;
+  background: #fff0f0;
+  border: .5px solid #f0c0c0;
+  border-radius: 8px;
+  padding: 5px 12px;
+  cursor: pointer;
+  margin-top: 8px;
+  width: 100%;
+}
+
+/* ── Add exercise button ────────────────────────────────────────────────────── */
+.ec-add-btn {
+  width: 100%;
+  background: #e8f0e9;
+  border: 2px solid #3d6b47;
+  border-radius: 14px;
+  padding: 13px;
+  color: #3d6b47;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: all .2s;
+  font-family: inherit;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(61,107,71,.12);
+}
+.ec-add-btn:hover { background: #d4e8d6; border-color: #2d5237; }
+
+/* ── Section card (walks, notes) ───────────────────────────────────────────── */
+.ec-section-card {
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  border: .5px solid rgba(0,0,0,.06);
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+}
+.ec-sec-label {
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #7a9e7e;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ec-sec-label::after {
+  content: '';
+  flex: 1;
+  height: .5px;
+  background: #d4e8d6;
+}
+
+/* ── Walk grid (3-col) ──────────────────────────────────────────────────────── */
+.ec-walks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.ec-walk-card {
+  border-radius: 12px;
+  padding: 10px 8px 8px;
+  text-align: center;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-bg);
+  transition: all .2s;
+}
+.ec-walk-card.done    { background: #e8f0e9; border-color: #3d6b47; }
+.ec-walk-card.running { border-color: #8a6a30; background: #fffcf5; }
+.ec-wi-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.ec-wi-icon { font-size: 18px; }
+.ec-wi-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s;
+  background: var(--color-surface);
+  flex-shrink: 0;
+}
+.ec-wi-check.done { border-color: #3d6b47; background: #3d6b47; }
+.ec-wi-check svg  { width: 11px; height: 11px; display: block; }
+.ec-wi-time {
+  font-size: 20px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+  margin: 2px 0 4px;
+  line-height: 1;
+}
+.ec-wi-sub {
+  font-size: 9px;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+.ec-wi-sub.complete { color: #3d6b47; font-weight: 600; }
+.ec-wi-btn {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 5px 0;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  margin-bottom: 6px;
+  transition: all .2s;
+  min-height: 28px;
+  width: 100%;
+}
+.ec-wi-btn.start { background: #e8f0e9; color: #3d6b47; }
+.ec-wi-btn.stop  { background: #fdf6ec; color: #8a6a30; }
+.ec-wi-label    { font-size: 10px; font-weight: 600; color: var(--color-text); line-height: 1.2; }
+.ec-wi-sublabel { font-size: 9px; color: var(--color-text-muted); margin-top: 2px; }
+
+.ec-walk-summary {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text);
+  padding-top: 8px;
+  border-top: .5px solid #e8f0e9;
+}
+.ec-walk-summary strong { color: #3d6b47; }
+
+/* ── Overall note ───────────────────────────────────────────────────────────── */
+.ec-overall-note {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--color-text);
+  resize: none;
+  outline: none;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+/* ── Fixed bottom panel (rest timer) ───────────────────────────────────────── */
+.ec-timer-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-surface);
+  border-top: .5px solid var(--color-border);
+  z-index: 90;
+  box-shadow: 0 -4px 20px rgba(0,0,0,.1);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+.ec-timer-panel-inner {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 10px 16px 60px;  /* 60px to clear tab bar */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ec-sw-block { flex: 1; }
+.ec-sw-top {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.ec-sw-lbl {
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+.ec-sw-time {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .02em;
+  line-height: 1;
+}
+.ec-sw-controls { display: flex; gap: 6px; }
+.ec-sw-btn {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all .2s;
+  min-height: 30px;
+}
+.ec-sw-btn.start { background: #3d6b47; color: #fff; }
+.ec-sw-btn.pause { background: #e07b5a; color: #fff; }
+
+/* Rest timer */
+.ec-rest-block { flex-shrink: 0; text-align: center; }
+.ec-rest-lbl {
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #7a9e7e;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.ec-rest-circle-wrap {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  cursor: pointer;
+  margin: 0 auto 4px;
+}
+.ec-rest-svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 58px; height: 58px;
+  transform: rotate(-90deg);
+}
+.ec-rest-bg  { fill: none; stroke: #e8f0e9; stroke-width: 4; }
+.ec-rest-fg  {
+  fill: none;
+  stroke: #3d6b47;
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dashoffset .8s linear;
+}
+.ec-rest-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.ec-rest-time   { font-size: 14px; font-weight: 700; color: var(--color-text); font-variant-numeric: tabular-nums; line-height: 1; }
+.ec-rest-action { font-size: 7px; color: var(--color-text-muted); margin-top: 1px; letter-spacing: .04em; }
+.ec-rest-presets { display: flex; gap: 3px; justify-content: center; }
+.ec-rest-preset {
+  font-size: 9px;
+  padding: 3px 7px;
+  border-radius: 10px;
+  border: .5px solid #c8d8c8;
+  background: #f8fbf8;
+  color: #3d6b47;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  transition: all .2s;
+}
+.ec-rest-preset:hover,
+.ec-rest-preset.active { background: #3d6b47; color: #fff; border-color: #3d6b47; }
+
+/* ── Custom exercise modal ─────────────────────────────────────────────────── */
+.ec-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 400;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: ecFadeIn .2s ease;
+}
+@keyframes ecFadeIn { from{opacity:0} to{opacity:1} }
+.ec-modal {
+  background: var(--color-surface);
+  border-radius: 22px 22px 0 0;
+  padding: 6px 20px 40px;
+  width: 100%;
+  max-width: 540px;
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: ecSlideUp .25s ease;
+}
+@keyframes ecSlideUp { from{transform:translateY(40px);opacity:.5} to{transform:translateY(0);opacity:1} }
+.ec-modal-handle {
+  width: 38px;
+  height: 4px;
+  background: var(--color-border);
+  border-radius: 2px;
+  margin: 10px auto 18px;
+}
+.ec-modal-title {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 18px;
+}
+.ec-form-group { margin-bottom: 12px; }
+.ec-form-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+.ec-form-input {
+  width: 100%;
+  border: .5px solid var(--color-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  color: var(--color-text);
+  background: var(--color-surface);
+  transition: border-color .2s;
+  box-sizing: border-box;
+  resize: none;
+}
+.ec-form-input:focus { border-color: #3d6b47; box-shadow: 0 0 0 3px rgba(61,107,71,.1); }
+.ec-modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+.ec-btn-primary {
+  flex: 1;
+  background: #3d6b47;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .2s;
+}
+.ec-btn-primary:hover    { background: #2d5a37; }
+.ec-btn-primary:disabled { background: #ccc; cursor: not-allowed; }
+.ec-btn-secondary {
+  flex: 1;
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* ── Session pill wrap (with reset button) ─────────────────────────────────── */
+.ec-session-pill-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.ec-session-pill-wrap .ec-session-pill {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.ec-session-reset {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.ec-session-reset:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+/* ── Walk card reset button ─────────────────────────────────────────────────── */
+.ec-wi-btn-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+.ec-wi-reset {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.ec-wi-reset:hover { border-color: #ef4444; color: #ef4444; }
+
+/* ── Hide/restore exercises ──────────────────────────────────────────────────── */
+.ec-remove-btn {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 11px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  margin-top: 6px;
+  transition: all 0.15s;
+}
+.ec-remove-btn:hover { border-color: #ef4444; color: #ef4444; }
+
+.ec-hidden-exs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.ec-restore-btn {
+  padding: 6px 12px;
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: 11px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+}
+.ec-restore-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+/* ── Modal tabs ──────────────────────────────────────────────────────────────── */
+.ec-modal-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+  border-bottom: 1.5px solid var(--color-border);
+  padding-bottom: 0;
+}
+
+.ec-modal-tab {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-family: var(--font-body);
+  border-bottom: 2.5px solid transparent;
+  margin-bottom: -1.5px;
+  transition: all 0.15s;
+}
+.ec-modal-tab.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+/* ── Library picker ──────────────────────────────────────────────────────────── */
+.ec-lib-cats {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.ec-lib-cat {
+  padding: 5px 10px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: transparent;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.ec-lib-cat.active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-bg);
+  color: var(--color-primary);
+}
+
+.ec-lib-list {
+  max-height: 280px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.ec-lib-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.ec-lib-item-info { flex: 1; }
+
+.ec-lib-item-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.ec-lib-item-tag {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  margin-top: 1px;
+}
+
+.ec-lib-add-btn {
+  padding: 5px 12px;
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-bg);
+  color: var(--color-primary);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-body);
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.ec-lib-add-btn:hover { background: var(--color-primary); color: #fff; }
+
+/* ── Exercise reorder buttons ────────────────────────────────────────────────── */
+.ec-move-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex-shrink: 0;
+}
+
+.ec-move-btn {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  font-size: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  transition: all 0.15s;
+}
+.ec-move-btn:hover:not(:disabled) {
+  background: #e8f0e9;
+  border-color: #3d6b47;
+  color: #3d6b47;
+}
+.ec-move-btn:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+/* ── Phase move row (custom exercise section chooser) ─────────────────────── */
+.ec-phase-move-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 8px 0 4px;
+}
+
+.ec-phase-move-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.ec-phase-move-btn {
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1.5px solid var(--color-border);
+  background: transparent;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.ec-phase-move-btn.active {
+  border-color: #3d6b47;
+  background: #e8f0e9;
+  color: #3d6b47;
+}
+.ec-phase-move-btn:hover:not(.active) {
+  border-color: #3d6b47;
+  color: #3d6b47;
+}
+
+/* ── Mobile tweaks ─────────────────────────────────────────────────────────── */
+@media (max-width: 420px) {
+  .ec-day-grid { gap: 5px; }
+  .ec-dt-name  { font-size: 9px; }
+  .ec-main     { gap: 6px; padding: 8px 8px 7px; }
+  .ec-name     { font-size: 12px; }
+  .ec-detail   { padding-left: 34px; }
+  .ec-walks-grid { gap: 5px; }
+  .ec-wi-time  { font-size: 17px; }
+  .ec-wi-label { font-size: 9px; }
+}

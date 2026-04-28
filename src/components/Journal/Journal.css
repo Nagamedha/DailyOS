@@ -1,0 +1,292 @@
+.jn-wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px 16px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Affirmation ── */
+.jn-affirmation {
+  background: linear-gradient(135deg, #2d4a35, #4a7c55);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  color: #fff;
+  position: relative;
+}
+
+.jn-aff-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 8px;
+}
+
+.jn-aff-text {
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.45;
+  font-style: italic;
+}
+
+.jn-aff-shuffle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.jn-aff-shuffle:hover { background: rgba(255,255,255,0.28); }
+
+/* ── Mood ── */
+.jn-mood-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.jn-mood-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.jn-mood-row {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.jn-mood-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 4px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font-body);
+}
+.jn-mood-btn:hover { border-color: var(--color-primary); background: var(--color-primary-bg); }
+.jn-mood-btn.selected { border-color: var(--color-primary); background: var(--color-primary-bg); }
+
+.jn-mood-emoji { font-size: 24px; line-height: 1; }
+.jn-mood-label { font-size: 9px; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.03em; }
+.jn-mood-btn.selected .jn-mood-label { color: var(--color-primary); }
+
+/* ── Write area ── */
+.jn-write-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.jn-write-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.jn-textarea {
+  width: 100%;
+  min-height: 140px;
+  padding: 12px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: #fff;
+  resize: vertical;
+  line-height: 1.6;
+}
+.jn-textarea:focus { outline: none; border-color: var(--color-primary); }
+
+.jn-write-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.jn-photo-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: border-color 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+.jn-photo-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+.jn-save-btn {
+  margin-left: auto;
+  padding: 10px 22px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: opacity 0.15s;
+}
+.jn-save-btn:hover { opacity: 0.9; }
+.jn-save-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.jn-photo-preview-sm {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.jn-photo-remove {
+  background: none;
+  border: none;
+  color: var(--color-red);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+/* ── Entries list ── */
+.jn-entries-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.jn-entries-header {
+  padding: 14px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.jn-entry-empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.jn-entry {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-border-light);
+}
+.jn-entry:last-child { border-bottom: none; }
+
+.jn-entry-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.jn-entry-time {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.jn-entry-del {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--color-red);
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0.6;
+  padding: 0 4px;
+}
+.jn-entry-del:hover { opacity: 1; }
+
+.jn-entry-text {
+  font-size: 13px;
+  color: var(--color-text);
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+.jn-entry-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  margin-top: 8px;
+}
+
+/* ── Prompts ── */
+.jn-prompts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.jn-prompt-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.jn-prompt-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.jn-prompt-chip {
+  padding: 5px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: transparent;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.15s;
+}
+.jn-prompt-chip:hover { border-color: var(--color-primary); color: var(--color-primary); background: var(--color-primary-bg); }
+
+@media (max-width: 420px) {
+  .jn-wrap { padding: 12px 12px 100px; }
+  .jn-mood-emoji { font-size: 20px; }
+}
