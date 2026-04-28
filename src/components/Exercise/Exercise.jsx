@@ -688,17 +688,24 @@ export default function Exercise({ currentDate }) {
                 </div>
                 {/* Exercise list */}
                 <div className="ec-lib-list">
-                  {EXERCISE_LIBRARY.filter(ex => libCat === 'all' || ex.category === libCat).map(ex => (
-                    <div key={ex.id} className="ec-lib-item">
-                      <div className="ec-lib-item-info">
-                        <div className="ec-lib-item-name">{ex.name}</div>
-                        <div className="ec-lib-item-tag">{ex.tag}{ex.weight ? ` · ${ex.weight}` : ''}</div>
+                  {EXERCISE_LIBRARY.filter(ex => libCat === 'all' || ex.category === libCat).map(ex => {
+                    const catLabel = LIBRARY_CATEGORIES.find(c => c.key === ex.category)
+                    return (
+                      <div key={ex.id} className="ec-lib-item">
+                        <div className="ec-lib-item-info">
+                          <div className="ec-lib-item-name">{ex.name}</div>
+                          <div className="ec-lib-item-tag">
+                            {catLabel && <span className="ec-lib-item-cat">{catLabel.icon} {catLabel.label}</span>}
+                            {ex.tag && <span>{ex.tag}</span>}
+                            {ex.weight && <span>· {ex.weight}</span>}
+                          </div>
+                        </div>
+                        <button className="ec-lib-add-btn" onClick={() => { addLibraryExercise(ex); setShowModal(false) }}>
+                          + Add
+                        </button>
                       </div>
-                      <button className="ec-lib-add-btn" onClick={() => { addLibraryExercise(ex); setShowModal(false) }}>
-                        + Add
-                      </button>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
                 <button className="ec-btn-secondary" style={{ marginTop: 12 }} onClick={() => setShowModal(false)}>Close</button>
               </>
