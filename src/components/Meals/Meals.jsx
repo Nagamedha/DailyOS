@@ -252,31 +252,121 @@ function SnackSection({ meal, onSet }) {
   )
 }
 
-function SupplementCard({ supp, state, onToggle, onTimeChange }) {
+const SUPP_COLOR_SWATCHES = ['#ef4444','#f97316','#f59e0b','#22c55e','#3b82f6','#8b5cf6','#ec4899','#14b8a6']
+
+function AddSupplementModal({ onAdd, onClose }) {
+  const [form, setForm] = useState({ name: '', icon: '💊', frequency: 'Daily', timing: '', withFood: '', avoid: '', rules: '', color: '#3b82f6' })
+  const valid = form.name.trim()
+  const f = (field, val) => setForm(p => ({ ...p, [field]: val }))
+  return (
+    <div className="ml-modal-overlay" onClick={onClose}>
+      <div className="ml-modal" onClick={e => e.stopPropagation()}>
+        <div className="ml-modal-title">Add Supplement</div>
+
+        {/* Icon + Name row */}
+        <div className="ml-supp-form-row">
+          <div style={{ flex: '0 0 64px' }}>
+            <div className="ml-label">Icon</div>
+            <input className="ml-time-input ml-supp-icon-input" maxLength={2} value={form.icon}
+              onChange={e => f('icon', e.target.value)} placeholder="💊" />
+          </div>
+          <div style={{ flex: 1 }}>
+            <div className="ml-label">Name *</div>
+            <input className="ml-time-input" style={{ width: '100%', boxSizing: 'border-box' }}
+              value={form.name} autoFocus onChange={e => f('name', e.target.value)} placeholder="e.g. Vitamin C" />
+          </div>
+        </div>
+
+        {/* Frequency */}
+        <div style={{ marginBottom: 10 }}>
+          <div className="ml-label">Frequency</div>
+          <input className="ml-time-input" style={{ width: '100%', boxSizing: 'border-box' }}
+            value={form.frequency} onChange={e => f('frequency', e.target.value)} placeholder="e.g. Daily / Once per week" />
+        </div>
+
+        {/* Timing */}
+        <div style={{ marginBottom: 10 }}>
+          <div className="ml-label">When to take</div>
+          <input className="ml-time-input" style={{ width: '100%', boxSizing: 'border-box' }}
+            value={form.timing} onChange={e => f('timing', e.target.value)} placeholder="e.g. Morning with breakfast" />
+        </div>
+
+        {/* With food */}
+        <div style={{ marginBottom: 10 }}>
+          <div className="ml-label">Take with</div>
+          <input className="ml-time-input" style={{ width: '100%', boxSizing: 'border-box' }}
+            value={form.withFood} onChange={e => f('withFood', e.target.value)} placeholder="e.g. Any meal, fat-containing food" />
+        </div>
+
+        {/* Avoid */}
+        <div style={{ marginBottom: 10 }}>
+          <div className="ml-label">⛔ Avoid / Interactions</div>
+          <input className="ml-time-input" style={{ width: '100%', boxSizing: 'border-box' }}
+            value={form.avoid} onChange={e => f('avoid', e.target.value)} placeholder="e.g. No dairy 1 hr before / after" />
+        </div>
+
+        {/* Rules / Notes */}
+        <div style={{ marginBottom: 10 }}>
+          <div className="ml-label">Rules / Notes</div>
+          <textarea className="ml-text-input ml-input-single" value={form.rules}
+            onChange={e => f('rules', e.target.value)} placeholder="Doctor instructions, special notes…" />
+        </div>
+
+        {/* Color */}
+        <div style={{ marginBottom: 14 }}>
+          <div className="ml-label">Colour</div>
+          <div className="ml-supp-color-row">
+            {SUPP_COLOR_SWATCHES.map(c => (
+              <button key={c} className={`ml-supp-color-swatch${form.color === c ? ' active' : ''}`}
+                style={{ background: c }} onClick={() => f('color', c)} />
+            ))}
+          </div>
+        </div>
+
+        <div className="ml-modal-actions">
+          <button className="ml-btn-cancel" onClick={onClose}>Cancel</button>
+          <button className="ml-btn-save" disabled={!valid} onClick={() => {
+            if (!valid) return
+            onAdd({ name: form.name.trim(), icon: form.icon || '💊', frequency: form.frequency, timing: form.timing, withFood: form.withFood, avoid: form.avoid, rules: form.rules, color: form.color })
+            onClose()
+          }}>Add</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function SupplementCard({ supp, state, onToggle, onTimeChange, onRemove, isCustom }) {
   const [expanded, setExpanded] = useState(false)
   return (
-    <div
-      className={`ml-supp-row${state.taken ? ' taken' : ''}`}
-      onClick={onToggle}
-    >
+    <div className={`ml-supp-row${state.taken ? ' taken' : ''}`} onClick={onToggle}>
       <span className="ml-supp-icon">{supp.icon}</span>
       <div className="ml-supp-info">
         <div className="ml-supp-name">{supp.name}</div>
         <div className="ml-supp-timing">{supp.timing}</div>
         {supp.avoid && <div className="ml-supp-avoid">{supp.avoid}</div>}
-        {expanded && <div className="ml-supp-rule">{supp.rules}</div>}
+        {expanded && (
+          <>
+            {supp.withFood && <div className="ml-supp-rule">✅ Take with: {supp.withFood}</div>}
+            {supp.rules && <div className="ml-supp-rule">{supp.rules}</div>}
+            {onRemove && (
+              <button
+                className={`ml-supp-remove${isCustom ? ' delete' : ''}`}
+                onClick={e => { e.stopPropagation(); onRemove() }}
+              >
+                {isCustom ? '🗑 Delete permanently' : '− Remove from my list'}
+              </button>
+            )}
+          </>
+        )}
       </div>
-      <input
-        type="time"
-        className="ml-supp-time"
-        value={state.time}
+      <input type="time" className="ml-supp-time" value={state.time}
         onClick={e => e.stopPropagation()}
         onChange={e => { e.stopPropagation(); onTimeChange(e.target.value) }}
       />
-      <button
-        className="ml-supp-expand"
-        onClick={e => { e.stopPropagation(); setExpanded(v => !v) }}
-      >{expanded ? '▲' : '▼'}</button>
+      <button className="ml-supp-expand" onClick={e => { e.stopPropagation(); setExpanded(v => !v) }}>
+        {expanded ? '▲' : '▼'}
+      </button>
       <div className="ml-supp-check">{state.taken ? '✓' : ''}</div>
     </div>
   )
@@ -313,8 +403,18 @@ function AddExtraModal({ onAdd, onClose }) {
 }
 
 export default function Meals({ currentDate }) {
-  const { data, setMeal, toggleSupp, setSuppTime, addExtraMeal, deleteExtraMeal, customMealOpts, addCustomMealOption, deleteCustomMealOption, suppsTaken, suppTotal, mealsLogged } = useMeals(currentDate)
+  const {
+    data, setMeal, toggleSupp, setSuppTime,
+    addExtraMeal, deleteExtraMeal,
+    customMealOpts, addCustomMealOption, deleteCustomMealOption,
+    allVisibleSupps, hiddenSupps,
+    addCustomSupplement, deleteCustomSupplement,
+    hideDefaultSupplement, restoreDefaultSupplement,
+    suppsTaken, suppTotal, mealsLogged,
+  } = useMeals(currentDate)
+
   const [showAddExtra, setShowAddExtra] = useState(false)
+  const [showAddSupp, setShowAddSupp] = useState(false)
   const [suppOpen, setSuppOpen] = useState(true)
 
   const totalCal = (() => {
@@ -385,7 +485,7 @@ export default function Meals({ currentDate }) {
           <div className="ml-card-header-left">
             <span className="ml-card-icon">💊</span>
             <div>
-              <div className="ml-card-title">Supplements</div>
+              <div className="ml-card-title">Supplements & Medications</div>
               <div className="ml-card-subtitle">{suppsTaken}/{suppTotal} taken today</div>
             </div>
           </div>
@@ -394,21 +494,50 @@ export default function Meals({ currentDate }) {
         {suppOpen && (
           <div className="ml-card-body">
             <div className="ml-supps-grid">
-              {SUPPLEMENTS.map(s => (
-                <SupplementCard
-                  key={s.id}
-                  supp={s}
-                  state={data.supplements[s.id] || { taken: false, time: '' }}
-                  onToggle={() => toggleSupp(s.id)}
-                  onTimeChange={t => setSuppTime(s.id, t)}
-                />
-              ))}
+              {allVisibleSupps.map(s => {
+                const isCustom = s.id.startsWith('csupp_')
+                return (
+                  <SupplementCard
+                    key={s.id}
+                    supp={s}
+                    state={data.supplements[s.id] || { taken: false, time: '' }}
+                    onToggle={() => toggleSupp(s.id)}
+                    onTimeChange={t => setSuppTime(s.id, t)}
+                    isCustom={isCustom}
+                    onRemove={isCustom
+                      ? () => { if (window.confirm(`Delete "${s.name}" permanently?`)) deleteCustomSupplement(s.id) }
+                      : () => hideDefaultSupplement(s.id)
+                    }
+                  />
+                )
+              })}
             </div>
+
+            {/* Restore hidden defaults */}
+            {hiddenSupps.length > 0 && (
+              <div className="ml-hidden-supps">
+                {hiddenSupps.map(id => {
+                  const s = SUPPLEMENTS.find(x => x.id === id)
+                  if (!s) return null
+                  return (
+                    <button key={id} className="ml-restore-supp" onClick={() => restoreDefaultSupplement(id)}>
+                      + Restore: {s.icon} {s.name}
+                    </button>
+                  )
+                })}
+              </div>
+            )}
+
+            {/* Add new supplement */}
+            <button className="ml-add-supp-btn" onClick={() => setShowAddSupp(true)}>
+              ＋ Add supplement / medication
+            </button>
           </div>
         )}
       </div>
 
       {showAddExtra && <AddExtraModal onAdd={addExtraMeal} onClose={() => setShowAddExtra(false)} />}
+      {showAddSupp  && <AddSupplementModal onAdd={addCustomSupplement} onClose={() => setShowAddSupp(false)} />}
     </div>
   )
 }

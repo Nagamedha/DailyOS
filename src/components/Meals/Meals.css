@@ -392,6 +392,94 @@
   flex-shrink: 0;
 }
 
+/* Remove / delete button inside expanded supplement */
+.ml-supp-remove {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: var(--color-bg);
+  border: 1px dashed var(--color-border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all .15s;
+}
+.ml-supp-remove:hover { border-color: #f59e0b; color: #f59e0b; }
+.ml-supp-remove.delete:hover { border-color: #ef4444; color: #ef4444; }
+
+/* Restore hidden supplements */
+.ml-hidden-supps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--color-border);
+}
+.ml-restore-supp {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: 20px;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all .15s;
+}
+.ml-restore-supp:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+/* Add supplement button */
+.ml-add-supp-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px;
+  background: #e8f0e9;
+  border: 2px solid #3d6b47;
+  border-radius: 12px;
+  color: #3d6b47;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all .2s;
+}
+.ml-add-supp-btn:hover { background: #d4e8d6; }
+
+/* Supplement form helpers */
+.ml-supp-form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: flex-end;
+}
+.ml-supp-icon-input {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  box-sizing: border-box;
+}
+.ml-supp-color-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.ml-supp-color-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2.5px solid transparent;
+  cursor: pointer;
+  transition: transform .15s;
+  flex-shrink: 0;
+}
+.ml-supp-color-swatch.active { border-color: #222; transform: scale(1.15); }
+.ml-supp-color-swatch:hover  { transform: scale(1.1); }
+
 /* ── Summary bar ── */
 .ml-summary {
   display: flex;
