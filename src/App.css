@@ -26,6 +26,7 @@
   /* ── Neutral palette ── */
   --color-bg:           #f4f6f4;   /* page background */
   --color-card:         #ffffff;   /* card backgrounds */
+  --color-surface:      #ffffff;   /* alias for card — used by Exercise components */
   --color-text:         #2d3748;   /* primary text */
   --color-text-muted:   #718096;   /* secondary / hint text */
   --color-text-light:   #a0aec0;   /* placeholder text */
